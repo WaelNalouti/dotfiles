@@ -30,15 +30,15 @@ return {
         }
         hl.TelescopePromptTitle = {
           bg = prompt,
-          fg = prompt,
+          fg = c.fg_dark,
         }
         hl.TelescopePreviewTitle = {
           bg = c.bg_dark,
-          fg = c.bg_dark,
+          fg = c.fg_dark,
         }
         hl.TelescopeResultsTitle = {
           bg = c.bg_dark,
-          fg = c.bg_dark,
+          fg = c.fg_dark,
         }
       end,
     }))
