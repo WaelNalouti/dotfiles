@@ -1,0 +1,24 @@
+# !/bin/bash
+
+# Check if the current directory is a Git repository
+if ! git rev-parse --is-inside-work-tree > /dev/null 2>&1; then
+  echo "This is not a Git repository."
+  exit 1
+fi
+
+if [ $# -lt 1 ]; then
+  echo "Usage: $0 <author1> [author2 ... authorN]"
+  echo "Available authors for the current repo:"
+  git log --format=' %aN' | sort -u | paste -sd ',' -
+  exit 1
+fi
+
+echo ""
+git remote -v | awk '/fetch/ {print $2}' | head -n 1
+date 
+echo ""
+
+for author in "$@"; do
+    echo "Commit stats for '$author':"
+	git log --author="$author" --no-merges --pretty=tformat: --numstat | awk '{inserted+=$1; deleted+=$2; delta+=$1-$2; ratio=deleted/inserted} END {printf "- Lines added (total)....  %s\n- Lines deleted (total)..  %s\n- Total lines (delta)....  %s\n- Add./Del. ratio (1:n)..  1 : %s\n\n", inserted, deleted, delta, ratio }' -
+done

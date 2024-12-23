@@ -1,0 +1,19 @@
+configuration {
+  modi: "run,window,combi";
+  icon-theme: "Oranchelo";
+  show-icons: true;
+  terminal: "wezterm";
+  drun-display-format: "{icon} {name}";
+  location: 0;
+  disable-history: false;
+  hide-scrollbar: true;
+  sidebar-mode: true;
+  timeout {
+      action: "kb-cancel";
+      delay:  0;
+  }
+  filebrowser {
+      directories-first: true;
+      sorting-method:    "name";
+  }
+}

@@ -1,0 +1,28 @@
+#!/usr/bin/env bash
+
+selected=$(fd --type d --hidden --exclude '.git' --exclude 'node_modules' . ~/personal ~/work ~/.config | fzf --preview 'tree -C {} | head -200' --bind 'ctrl-/:change-preview-window(hidden|down|up|right)' --ansi --query '' --prompt "start new $1 @ > " --preview-window 'right:40%')
+
+if [[ -z $selected ]]; then
+    exit 0
+fi
+
+selected_dir=$(basename "$selected" | tr . _)
+
+if [ "$1" == "window" ]; then
+    # Open a new window with the selected dir
+    tmux neww -c "$selected" -n "$selected_dir"
+elif [ "$1" == "session" ]; then
+    # Open a new session with the selected dir
+    tmux_running=$(pgrep tmux)
+
+    if [[ -z $TMUX ]] && [[ -z $tmux_running ]]; then
+        tmux new-session -s "$selected_dir" -c "$selected"
+        exit 0
+    fi
+
+    if ! tmux has-session -t="$selected_dir" 2>/dev/null; then
+        tmux new-session -ds "$selected_dir" -c "$selected"
+    fi
+
+    tmux switch-client -t "$selected_dir"
+fi
