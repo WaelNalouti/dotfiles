@@ -69,12 +69,14 @@ return {
   },
   opts = {
     window = {
-      position = "right",
+      position = "current",
     },
     filesystem = {
       filtered_items = {
         always_show_by_pattern = {
           ".env*",
+          ".config",
+          ".zshrc",
         },
       },
     },
