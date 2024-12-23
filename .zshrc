@@ -105,9 +105,10 @@ alias kanv="killall nvim"
 
 # Navigation
 alias ll="ls -la"
-alias vf="v \$(fzf --height 50% --reverse --border)"
+alias vf="nvim \$(fzf --height 50% --reverse --border)"
 alias of="open ~/\$(fzf --height 40% --reverse --border)"
-alias ff="cd \$(fd --type d --hidden --exclude '.git' --exclude 'node_modules' . ~/personal ~/work ~/.config | fzf --preview 'tree -C {} | head -200' --bind 'ctrl-/:change-preview-window(hidden|down|up|right)' --ansi --query '' --prompt 'start window > ' --preview-window 'right:40%')"
+alias ff="cd \$(fd --type d --hidden --exclude '.git' --exclude 'node_modules' . ~/personal ~/work ~/.config ~/dotfiles | fzf --preview 'tree -C {} | head -200' --bind 'ctrl-/:change-preview-window(hidden|down|up|right)' --ansi --query '' --prompt 'go to > ' --preview-window 'right:40%')"
+alias dotfiles="cd ~/dotfiles && nvim ~/dotfiles"
 
 alias ns="npm start"
 alias nd="npm run dev"
