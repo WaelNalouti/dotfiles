@@ -17,7 +17,7 @@ set $mod Mod4
 exec --no-startup-id picom
 
 # Background
-exec_always feh --bg-scale ~/wallpapers/house.jpeg
+exec_always feh --bg-scale ~/wallpapers/tropic_island_day.jpg
 
 #rofi status bar
 # exec_always --no-startup-id killall polybar
@@ -211,7 +211,7 @@ bindsym $mod+Shift+Escape exec systemctl poweroff
 bar {
        status_command i3status
         position top
-        font pango:Victor Mono 7
+        font pango:Victor Mono 8
         separator_symbol " "
         colors {
                 background #222333
