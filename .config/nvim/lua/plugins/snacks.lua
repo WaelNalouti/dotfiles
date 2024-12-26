@@ -123,13 +123,14 @@ return {
             file = file_data.path,
             width = 0.7,
             height = 0.7,
+            border = "double",
             bo = {
               modifiable = true,
             },
             wo = {
-              winbar = "%= %h %m %f",
+              winbar = "[" .. choice .. "_note] [%f] %m  %= %y",
               wrap = false,
-              signcolumn = "yes",
+              signcolumn = "auto",
               statuscolumn = " ",
               conceallevel = 3,
             },
