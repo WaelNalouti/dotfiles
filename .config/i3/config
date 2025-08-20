@@ -15,9 +15,25 @@ set $mod Mod4
 # set $mod Mod1 
 # screen tearing
 exec --no-startup-id picom
+exec --no-startup-id dunst
 
 # Background
-exec_always feh --bg-scale ~/wallpapers/tropic_island_day.jpg
+# 
+# --bg-center
+#         Center the file on the background.  If it is too small, it will be surrounded by a border as specified by --image-bg.
+#
+# --bg-fill
+#         Like --bg-scale, but preserves aspect ratio by zooming the image until it fits.  Either a horizontal or a vertical part of the image will be cut off
+#
+# --bg-max
+#         Like --bg-fill, but scale the image to the maximum size that fits the screen with borders on one side.  The border color can be set using --image-bg.
+#
+# --bg-scale
+#         Fit the file into the background without repeating it, cutting off stuff or using borders.  But the aspect ratio is not preserved either
+#
+# --bg-tile
+#         Tile (repeat) the image in case it is too small for the screen
+exec_always feh --bg-fill ~/wallpapers/518784ldsdl.jpg
 
 #rofi status bar
 # exec_always --no-startup-id killall polybar
@@ -49,7 +65,11 @@ exec --no-startup-id xss-lock --transfer-sleep-lock -- i3lock --nofork
 exec --no-startup-id nm-applet
 
 # hide window title
-for_window [class="^.*"] border pixel 3
+for_window [class="^.*"] border pixel 2
+
+client.focused           #9aa5ce #364A82 #c0caf5 #9aa5ce   #9aa5ce
+client.focused_inactive  #16161d #16161d #c0caf5 #16161d   #16161d
+client.unfocused         #16161d #16161d #c0caf5 #16161d   #16161d
 
 # Use pactl to adjust volume in PulseAudio.
 set $refresh_i3status killall -SIGUSR1 i3status
@@ -63,8 +83,8 @@ floating_modifier $mod
 
 # start a terminal
 # bindsym $mod+Return exec i3-sensible-terminal
-bindsym $mod+Return exec wezterm
-bindsym $mod+b exec brave-browser
+bindsym $mod+Return exec ghostty
+bindsym $mod+b exec vivaldi
 # bindsym $mod+, exec nautilus -w
 
 # kill focused window
@@ -184,16 +204,16 @@ mode "resize" {
         # Pressing right will grow the window’s width.
         # Pressing up will shrink the window’s height.
         # Pressing down will grow the window’s height.
-        bindsym h resize shrink width 5 px or 5 ppt
-        bindsym k resize grow height 5 px or 5 ppt
-        bindsym j resize shrink height 5 px or 5 ppt
-        bindsym l resize grow width 5 px or 5 ppt
+        bindsym h resize shrink width 20 px or 20 ppt
+        bindsym k resize grow height 20 px or 20 ppt
+        bindsym j resize shrink height 20 px or 20 ppt
+        bindsym l resize grow width 20 px or 20 ppt
 
         # same bindings, but for the arrow keys
-        bindsym Left resize shrink width 5 px or 5 ppt
-        bindsym Down resize grow height 5 px or 5 ppt
-        bindsym Up resize shrink height 5 px or 5 ppt
-        bindsym Right resize grow width 5 px or 5 ppt
+        bindsym Left resize shrink width 20 px or 20 ppt
+        bindsym Down resize grow height 20 px or 20 ppt
+        bindsym Up resize shrink height 20 px or 20 ppt
+        bindsym Right resize grow width 20 px or 20 ppt
 
         # back to normal: Enter or Escape or $mod+r
         bindsym Return mode "default"
@@ -209,22 +229,32 @@ bindsym $mod+Shift+Escape exec systemctl poweroff
 # Start i3bar to display a workspace bar (plus the system information i3status
 # i3status bar
 bar {
-       status_command i3status
+        status_command i3status
         position top
-        font pango:Victor Mono 8
+        font pango:Victor Mono Meduim 6
         separator_symbol " "
         colors {
-                background #222333
+                background #232323
                 statusline #ffffff
                 separator #ffffff
-                focused_workspace  #4c7899 #2B5489 #ffffff
-                active_workspace   #333333 #5f676a #ffffff
-                inactive_workspace #192331 #111111 #888888
+
+                # <colorclass>     <border> <background> <text>
+                focused_workspace  #333333 #5f676a #ffffff
+                active_workspace   #333333 #333333 #ffffff
+                inactive_workspace #232323 #232323 #888888
                 urgent_workspace   #D32F2F #900000 #ffffff
                 binding_mode       #D32F2F #900000 #ffffff
+                # background #cccccc
+                # statusline #000000
+                # separator #666666
+                #
+                # focused_workspace  #8e8e8e #b1b1b1 #000000
+                # active_workspace   #cccccc #999999 #000000
+                # inactive_workspace #cccccc #dddddd #777777
+                # urgent_workspace   #cccccc #900000 #000000
+                # binding_mode       #8e8e8e #0a6cf5 #000000
         }
         # tray_output primary
-        tray_padding 5px
-        workspace_min_width 30
+        # tray_padding 1px
+        # workspace_min_width 30
 }
-

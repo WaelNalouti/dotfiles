@@ -19,7 +19,7 @@ end
 
 -- Set background to same color as neovim
 -- config.colors = {}
-config.window_background_opacity = 0.9
+config.window_background_opacity = 0.6
 -- default is true, has more "native" look
 config.use_fancy_tab_bar = false
 config.enable_tab_bar = false
@@ -39,7 +39,7 @@ config.window_padding = {
 -- config.freetype_load_target = "HorizontalLcd"
 
 config.font = wezterm.font("Victor Mono", { weight = "DemiBold" })
-config.font_size = 10
+config.font_size = 11
 
 -- and finally, return the configuration to wezterm
 return config

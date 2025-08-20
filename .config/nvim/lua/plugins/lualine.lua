@@ -4,7 +4,7 @@ return {
     local icons = require("lazyvim.config").icons
     require("lualine").setup({
       options = {
-        theme = "tokyonight",
+        theme = "auto",
         -- globalstatus = vim.o.laststatus == 3,
         -- globalstatus = false,
         disabled_filetypes = { statusline = { "dashboard", "alpha", "ministarter", "snacks_dashboard" } },

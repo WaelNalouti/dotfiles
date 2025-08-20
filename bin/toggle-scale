@@ -1,0 +1,47 @@
+#!/bin/bash
+
+# Timeout in seconds before auto-revert if user doesn't confirm
+TIMEOUT=10
+
+# Detect current scale of HDMI-1
+CURRENT_SCALE=$(xrandr --verbose | awk '/HDMI-1 connected/{f=1} f && /Scale:/{print $2; exit}')
+
+# Function: normal mode
+normal_mode() {
+  echo "→ Switching back to NORMAL 1080p mode..."
+  xrandr --output eDP-1 --mode 1366x768 --scale 1x1 --pos 0x0
+  xrandr --output HDMI-1 --mode 1920x1080 --scale 1x1 --pos 1366x0
+  xrandr --fb 3286x1080
+}
+
+# Function: 4K simulated mode
+scaled_mode() {
+  echo "→ Switching to 1.5x scaling mode..."
+  xrandr --output eDP-1 --mode 1366x768 --scale 1x1 --pos 0x0
+  xrandr --output HDMI-1 --mode 1920x1080 --scale 1.5x1.5 --pos 1366x0
+  xrandr --fb 4246x1620
+}
+
+# Function: confirm changes
+confirm_or_revert() {
+  echo ""
+  echo "⚠️  If your screen looks messed up, DON'T press anything."
+  echo "⏳ Auto-reverting in $TIMEOUT seconds unless you confirm..."
+  echo -n "✔️  Press 'y' then Enter to confirm this mode: "
+
+  read -t $TIMEOUT -n 1 CONFIRM
+  if [[ "$CONFIRM" == "y" || "$CONFIRM" == "Y" ]]; then
+    echo -e "\n✅ Changes confirmed, keeping this mode."
+  else
+    echo -e "\n❌ No confirmation received, reverting..."
+    normal_mode
+  fi
+}
+
+# Main toggle logic
+if [[ "$CURRENT_SCALE" == "1.5x1.5" ]]; then
+  normal_mode
+else
+  scaled_mode
+  confirm_or_revert
+fi

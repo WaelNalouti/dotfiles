@@ -6,7 +6,9 @@ return {
   },
   opts = {
     adapters = {
-      ["neotest-jest"] = {},
+      ["neotest-jest"] = {
+        arg = { "--silent=false" },
+      },
       ["neotest-go"] = {
         -- Here we can set options for neotest-go, e.g.
         -- args = { "-tags=integration" }

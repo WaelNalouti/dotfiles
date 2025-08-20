@@ -1,3 +1,17 @@
+# PROMPT
+welcome() {
+  echo ""
+  echo " User:        $USER"
+  echo " Host:        $(hostname) | Kernel: $(uname -r)"
+  echo " IP:          $(hostname -I | awk '{print $1}')"
+  echo " Uptime:      $(uptime -p)"
+
+  # Memory usage
+  mem=$(free -h | awk '/^Mem/ {print $3 "/" $2}')
+  echo " Memory:      $mem"
+}
+welcome
+
 # If you come from bash you might have to change your $PATH.
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
 
@@ -91,6 +105,40 @@ source $ZSH/oh-my-zsh.sh
 # Compilation flags
 # export ARCHFLAGS="-arch x86_64"
 
+export EDITOR="nvim"
+
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+
+export PATH=$PATH:/usr/local/go/bin
+export PATH=$PATH:/home/joe/go/bin/
+
+
+# bun completions
+[ -s "/home/joe/.bun/_bun" ] && source "/home/joe/.bun/_bun"
+
+# bun
+export BUN_INSTALL="$HOME/.bun"
+export PATH="$BUN_INSTALL/bin:$PATH"
+
+export PATH="$HOME/.local/share/bob/nvim-bin:$PATH"
+
+eval "$(starship init zsh)"
+
+# Turso
+export PATH="$PATH:/home/joe/.turso"
+export PATH="/home/joe/.turso:$PATH"
+
+eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
+
+export FLYCTL_INSTALL="/home/joe/.fly"
+export PATH="$FLYCTL_INSTALL/bin:$PATH"
+
+# Zed editor
+export MESA_VK_DEVICE_SELECT=8086:9a49
+
+
 # Set personal aliases, overriding those provided by oh-my-zsh libs,
 # plugins, and themes. Aliases can be placed here, though oh-my-zsh
 # users are encouraged to define aliases within the ZSH_CUSTOM folder.
@@ -120,34 +168,3 @@ alias suspend='sudo sh -c "echo mem > /sys/power/state"'
 alias startsm="xrandr --output HDMI-1 --auto --right-of eDP-1"
 # Stop second monitor
 alias stopsm="xrandr --output HDMI-1 --off"
-
-# Example aliases
-# alias zshconfig="mate ~/.zshrc"
-# alias ohmyzsh="mate ~/.oh-my-zsh"
-
-export NVM_DIR="$HOME/.nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
-[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
-
-export PATH=$PATH:/usr/local/go/bin
-export PATH=$PATH:/home/joe/go/bin/
-
-
-# bun completions
-[ -s "/home/joe/.bun/_bun" ] && source "/home/joe/.bun/_bun"
-
-# bun
-export BUN_INSTALL="$HOME/.bun"
-export PATH="$BUN_INSTALL/bin:$PATH"
-
-export PATH="$PATH:/opt/nvim-linux64/bin"
-
-eval "$(starship init zsh)"
-
-# Turso
-export PATH="$PATH:/home/joe/.turso"
-
-eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
-
-export FLYCTL_INSTALL="/home/joe/.fly"
-export PATH="$FLYCTL_INSTALL/bin:$PATH"

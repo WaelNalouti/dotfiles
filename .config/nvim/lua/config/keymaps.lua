@@ -18,4 +18,4 @@ vim.keymap.set("n", "zh", "zhzhzhzhzh", { silent = true })
 -- vim.keymap.set("n", "<leader>bnn", "<cmd>!tmux neww tmux-sessionizer<CR>")
 
 vim.keymap.set("n", "<leader>ue", "<cmd>lua vim.opt.colorcolumn='80'<CR>", { silent = true })
-vim.keymap.set("n", "<leader>ug", "<cmd>lua vim.opt.colorcolumn=''<CR>", { silent = true })
+vim.keymap.set("n", "<leader>uee", "<cmd>lua vim.opt.colorcolumn=''<CR>", { silent = true })

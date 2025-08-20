@@ -4,8 +4,8 @@ return {
     style = "night",
     -- transparent = true,
     styles = {
-      -- sidebars = "transparent",
-      -- floats = "transparent",
+      sidebars = "transparent",
+      floats = "transparent",
     },
   },
   config = function(_, opts)
